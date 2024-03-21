@@ -1,0 +1,58 @@
+* {
+    font-family: "Sen", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+#store-items {
+    display: grid;
+    gap: 1em;
+    margin: 0 auto;
+}
+
+#cart {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.text-center {
+    text-align: center;
+}
+
+@media (min-width: 600px) {
+    #store-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    #store-items {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+

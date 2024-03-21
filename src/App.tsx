@@ -1,32 +1,11 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import StoreItem from "./StoreItem";
 import { ShoppingCartContext } from "./ShoppingCartContext";
 import CartItem from "./CartItem";
+import { items } from "./data";
 
 function App() {
-    const items: Item[] = [
-        {
-            id: 0,
-            name: "foheaof",
-            price: 1
-        },
-        {
-            id: 1,
-            name: "foheaof",
-            price: 1
-        },
-        {
-            id: 2,
-            name: "foheaof",
-            price: 1
-        },
-        {
-            id: 3,
-            name: "foheaof",
-            price: 1
-        }
-    ]
-
+    
     const router = (cart: CartItem[], action: { intent: string, id: number }): CartItem[] => {
         switch (action.intent) {
             case "remove": {
@@ -58,18 +37,21 @@ function App() {
         }
 
     }
-
+    const [showCart, setShowCart] = useState(false);
     const [cart, updateCart] = useReducer(router, []);
 
     return (
         <div>
-            <ShoppingCartContext.Provider value={{ cart, updateCart }}>
+            <ShoppingCartContext.Provider value={{ updateCart }}>
+                <button onClick={() => setShowCart(i => !i)}>Cart</button>
                 <div>
-                    <div>
-                        <h1>Store</h1>
-                        {items.map(i => <StoreItem key={i.id} storeItem={i}></StoreItem>)}
+                    <div className={`${showCart ? "w-70" : "w-100"}`}>
+                        <h1 className="text-center">Store</h1>
+                        <div id="store-items">
+                            {items.map(i => <StoreItem key={i.id} storeItem={i}></StoreItem>)}
+                        </div>
                     </div>
-                    <div className="cart">
+                    <div id="cart" className={`text-center ${showCart ? "w-30" : "hidden"}`}>
                         <h1>Your cart</h1>
                         {cart.map(i => <CartItem key={i.id} cartItem={i}></CartItem>)}
                     </div>

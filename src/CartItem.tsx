@@ -6,7 +6,7 @@ function CartItem({ cartItem: { id, name, price, count } }: { cartItem: CartItem
     const { updateCart } = useContext(ShoppingCartContext);
 
     return (
-        <div className="item">
+        <div className="item text-center">
             <h1>{name}</h1>
             <h2>{price}</h2>
             <button onClick={() => updateCart({ intent: "remove", id })}>Remove</button>
