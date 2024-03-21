@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import "./App.css"
 import { ShoppingCartContext } from "./ShoppingCartContext";
 
-function CartItem({ id, name, price, count }: CartItem) {
+function CartItem({ cartItem: { id, name, price, count } }: { cartItem: CartItem }) {
     const { updateCart } = useContext(ShoppingCartContext);
 
     return (

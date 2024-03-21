@@ -1,10 +1,10 @@
-type IItem = {
+type Item = {
     name: string,
     price: number,
     id: number
 }
 
-type CartItem = IItem & { count: number }
+type CartItem = Item & { count: number }
 
 type IShoppingCartContext = {
     cart: CartItem[],
