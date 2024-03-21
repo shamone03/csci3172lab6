@@ -1,0 +1,9 @@
+.container {
+    display: grid;
+    gap: 2;
+    grid-template-columns: auto;
+}
+
+.item {
+    border: 1px solid black;
+}
