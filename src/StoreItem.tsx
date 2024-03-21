@@ -9,7 +9,7 @@ function StoreItem({ storeItem: { id, name, price } }: { storeItem: Item }) {
         <div className="item">
             <h1>{name}</h1>
             <h2>{price}</h2>
-            <button onClick={e => updateCart({ type: "add", id })}>Add</button>
+            <button onClick={() => updateCart({ intent: "add", id })}>Add</button>
         </div>
     )
 }
