@@ -4,55 +4,139 @@
     font-style: normal;
 }
 
-.w-100 {
+.d-flex {
+    display: flex;
+}
+
+.d-flex-row {
+    flex-direction: row;
+}
+
+.d-flex-col {
+    flex-direction: column;
+}
+
+.gap-1 {
+    gap: 1em;
+}
+
+.gap-2 {
+    gap: 2em;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.store-cart-show {
+    width: 70%;
+    padding-right: 2em;
+}
+
+.store-cart-hidden {
     width: 100%;
 }
 
-.w-70 {
-    width: 70%;
-}
-
-.w-30 {
-    width: 30%;
-}
-
-#store-items {
-    display: grid;
-    gap: 1em;
-    margin: 0 auto;
-}
-
-#cart {
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-.hidden {
+.cart-hidden {
     display: none;
 }
 
-.item {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid black;
+.cart-show {
+    width: 30%;
+    padding-left: 2em;
 }
 
 .text-center {
     text-align: center;
 }
 
-@media (min-width: 600px) {
+.float {
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	bottom: 40px;
+	right: 40px;
+	border-radius: 50px;
+	text-align: center;
+    border: none;
+    background-color: black;
+    color: white;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.float:hover {
+    box-shadow: 3px 3px grey;
+    transition: none;
+}
+
+.float:active {
+    box-shadow: none;
+}
+
+.item-btn {
+    width: 60px;
+	height: 35px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    text-align: center;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.item-btn:hover {
+    box-shadow: 3px 3px grey;
+    transition: none;
+}
+
+.item-btn:active {
+    box-shadow: none;
+}
+
+.background-red {
+    background-color: salmon;
+}
+
+.background-green {
+    background-color: darkgreen;
+}
+
+#store-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
     #store-items {
         grid-template-columns: repeat(2, 1fr);
     }
-}
 
-@media (min-width: 900px) {
-    #store-items {
-        grid-template-columns: repeat(3, 1fr);
+    .store-cart-show {
+        padding: inherit;
+    }
+
+    .cart-show {
+        padding: inherit;
     }
 }
 
+@media (max-width: 600px) {
+    #store-items {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .store-cart-show {
+        display: none;
+        padding: inherit;
+    }
+
+    .cart-show {
+        width: 100%;
+        padding: inherit;
+        border: inherit;
+    }
+}

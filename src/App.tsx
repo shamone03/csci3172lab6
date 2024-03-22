@@ -1,11 +1,15 @@
-import { useReducer, useState } from "react";
-import StoreItem from "./StoreItem";
+import { useEffect, useReducer, useState } from "react";
 import { ShoppingCartContext } from "./ShoppingCartContext";
-import CartItem from "./CartItem";
 import { items } from "./data";
+import Store from "./Store";
+import Cart from "./Cart";
 
 function App() {
-    
+    const [storeItems, setStoreItems] = useState<Item[]>([]);
+    useEffect(() => {
+        setStoreItems(items);
+    }, []);
+
     const router = (cart: CartItem[], action: { intent: string, id: number }): CartItem[] => {
         switch (action.intent) {
             case "remove": {
@@ -37,27 +41,20 @@ function App() {
         }
 
     }
+
     const [showCart, setShowCart] = useState(false);
     const [cart, updateCart] = useReducer(router, []);
 
     return (
-        <div>
-            <ShoppingCartContext.Provider value={{ updateCart }}>
-                <button onClick={() => setShowCart(i => !i)}>Cart</button>
-                <div>
-                    <div className={`${showCart ? "w-70" : "w-100"}`}>
-                        <h1 className="text-center">Store</h1>
-                        <div id="store-items">
-                            {items.map(i => <StoreItem key={i.id} storeItem={i}></StoreItem>)}
-                        </div>
-                    </div>
-                    <div id="cart" className={`text-center ${showCart ? "w-30" : "hidden"}`}>
-                        <h1>Your cart</h1>
-                        {cart.map(i => <CartItem key={i.id} cartItem={i}></CartItem>)}
-                    </div>
-                </div>
-            </ShoppingCartContext.Provider>
-        </div>
+        <>
+            <button className="float" onClick={() => setShowCart(i => !i)}><span className="material-symbols-outlined">shopping_cart</span></button>
+            <main className="d-flex d-flex-row gap-2">
+                <ShoppingCartContext.Provider value={{ cart, updateCart, showCart, setShowCart }}>
+                    <Store storeItems={storeItems} />
+                    <Cart />
+                </ShoppingCartContext.Provider>
+            </main>
+        </>
     );
 }
 
